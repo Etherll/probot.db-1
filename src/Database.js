@@ -20,14 +20,24 @@ class Database {
   }
 
   async get(key) {
+    if (typeof key !== 'string') throw new ProError('Provided key must be a string');
     const data = await this._read();
     return data[key];
   }
 
   async set(key, value) {
+    if (typeof key !== 'string') throw new ProError('Provided key must be a string');
     const data = await this._read();
     data[key] = value;
     return this._write(data);
+  }
+
+  async push(key, element) {
+    const arr = await this.get(key) || [];
+    if (!Array.isArray(arr)) throw new ProError(`"${key}" is not an array!`);
+
+    arr.push(element);
+    return this.set(key, arr);
   }
 
   async delete(key) {
