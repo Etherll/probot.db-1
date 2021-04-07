@@ -19,8 +19,7 @@
   },
   "homepage": "https://github.com/xiJulian/probot.db#readme",
   "dependencies": {
-    "axios": "^0.21.1",
-    "node-cache": "^5.1.2"
+    "axios": "^0.21.1"
   },
   "devDependencies": {
     "eslint": "^7.23.0",
