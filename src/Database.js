@@ -1,6 +1,5 @@
 /* eslint-disable no-underscore-dangle */
 const axios = require('axios');
-const NodeCache = require('node-cache');
 const ProError = require('./Error.js');
 
 class Database {
@@ -17,7 +16,7 @@ class Database {
     this.serverId = serverId;
     this.embedName = embedName;
 
-    this.cache = new NodeCache();
+    this.cache = null;
   }
 
   async get(key) {
@@ -53,7 +52,7 @@ class Database {
   }
 
   async _read() {
-    return this.cache.get('pdb') || JSON.parse((await this._fetchEmbed()).content);
+    return this.cache || JSON.parse((await this._fetchEmbed()).content);
   }
 
   async _write(data) {
@@ -82,7 +81,7 @@ class Database {
       },
     });
 
-    this.cache.set('pdb', data);
+    this.cache = data;
 
     return true;
   }
