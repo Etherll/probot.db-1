@@ -15,8 +15,6 @@ class Database {
     this.authToken = authToken;
     this.serverId = serverId;
     this.embedName = embedName;
-
-    // this._fetchEmbed();
   }
 
   async get(key) {
@@ -33,6 +31,7 @@ class Database {
   }
 
   async push(key, element) {
+    if (typeof key !== 'string') throw new ProError('Provided key must be a string');
     const arr = await this.get(key) || [];
     if (!Array.isArray(arr)) throw new ProError(`"${key}" is not an array!`);
 
@@ -41,6 +40,7 @@ class Database {
   }
 
   async delete(key) {
+    if (typeof key !== 'string') throw new ProError('Provided key must be a string');
     const data = await this._read();
     delete data[key];
     return this._write(data);
