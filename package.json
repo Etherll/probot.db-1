@@ -1,6 +1,6 @@
 {
   "name": "probot.db",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "ProBot embeds based database, lol.",
   "main": "src/index.js",
   "scripts": {
