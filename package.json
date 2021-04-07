@@ -1,6 +1,6 @@
 {
   "name": "probot.db",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "ProBot embeds based database, lol.",
   "main": "src/index.js",
   "scripts": {
@@ -19,7 +19,8 @@
   },
   "homepage": "https://github.com/xiJulian/probot.db#readme",
   "dependencies": {
-    "axios": "^0.21.1"
+    "axios": "^0.21.1",
+    "node-cache": "^5.1.2"
   },
   "devDependencies": {
     "eslint": "^7.23.0",

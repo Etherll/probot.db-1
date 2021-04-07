@@ -1,5 +1,6 @@
 /* eslint-disable no-underscore-dangle */
 const axios = require('axios');
+const NodeCache = require('node-cache');
 const ProError = require('./Error.js');
 
 class Database {
@@ -15,12 +16,13 @@ class Database {
     this.authToken = authToken;
     this.serverId = serverId;
     this.embedName = embedName;
+
+    this.cache = new NodeCache();
   }
 
   async get(key) {
     if (typeof key !== 'string') throw new ProError('Provided key must be a string');
-    const data = await this._read();
-    return data[key];
+    return (await this._read())[key];
   }
 
   async set(key, value) {
@@ -51,8 +53,7 @@ class Database {
   }
 
   async _read() {
-    const embed = await this._fetchEmbed();
-    return JSON.parse(embed.content);
+    return this.cache.get('pdb') || JSON.parse((await this._fetchEmbed()).content);
   }
 
   async _write(data) {
@@ -80,6 +81,8 @@ class Database {
         method: 'UPDATE_EMBED',
       },
     });
+
+    this.cache.set('pdb', data);
 
     return true;
   }
