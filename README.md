@@ -1,5 +1,5 @@
 # ProBot.DB
-### ProBot embeds based database, lol.
+### ProBot embed messages feature based database, lol.
 
 Store your data in ProBot database easily, using the embed messages feature, for free :).
 

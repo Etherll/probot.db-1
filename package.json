@@ -1,7 +1,7 @@
 {
   "name": "probot.db",
   "version": "1.1.2",
-  "description": "ProBot embeds based database, lol.",
+  "description": "ProBot embed messages feature based database, lol.",
   "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
